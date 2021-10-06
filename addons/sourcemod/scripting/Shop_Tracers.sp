@@ -56,7 +56,7 @@ public void OnMapStart()
 
 	Kv = CreateKeyValues("Tracers");
 
-	Shop_GetCfgFile(buffer, sizeof(buffer), "trasers.txt");
+	Shop_GetCfgFile(buffer, sizeof(buffer), "tracers.txt");
 
 	if (!Kv.ImportFromFile(buffer)) 
 		SetFailState("Couldn't parse file %s", buffer);

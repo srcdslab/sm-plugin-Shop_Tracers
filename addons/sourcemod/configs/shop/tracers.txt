@@ -1,0 +1,127 @@
+"Tracers"
+{
+	"name"			"Tracers"	// Название категории в меню
+    "description"	""    				// Описание категории в меню
+	"hide_opposite_team"	"0"			// Скрывать ли лучи для противников (0 - Нет, 1 - Да)
+
+	"white"	// Идентефикатор в бд
+	{
+		"name" "White"		// Название пункта в меню
+		"color" "255 255 255 255"	// Цвет дыма
+		"price" "10000"			// Цена покупки цвета
+		"sellprice" "4500"		// Цена продажи цвета
+		"duration" "0"		// Длительность цвета в секундах
+	}
+	"red"
+	{
+		"name" "Red"
+		"color" "255 0 0 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"blue"
+	{
+		"name" "Blue"
+		"color" "0 0 255 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"sky_blue"
+	{
+		"name" "Sky Blue"
+		"color" "0 128 255 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"aquamarine"
+	{
+		"name" "Aquamarine"
+		"color" "127 255 212 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"green"
+	{
+		"name" "Green"
+		"color" "0 255 0 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Pink"
+	{
+		"name" "Pink"
+		"color" "255 0 128 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Orange"
+	{
+		"name" "Orange"
+		"color" "255 128 0 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Yellow"
+	{
+		"name" "Yellow"
+		"color" "255 255 0 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Cyan"
+	{
+		"name" "Cyan"
+		"color" "0 255 255 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Purple"
+	{
+		"name" "Purple"
+		"color" "255 0 255 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Violet"
+	{
+		"name" "Violet"
+		"color" "128 0 255 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Brown"
+	{
+		"name" "Brown"
+		"color" "139 69 19 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Olive"
+	{
+		"name" "Olive"
+		"color" "128 255 0 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+	"Lime"
+	{
+		"name" "Lime"
+		"color" "0 255 128 255"
+		"price" "10000"
+		"sellprice" "4500"
+		"duration" "0"
+	}
+}
