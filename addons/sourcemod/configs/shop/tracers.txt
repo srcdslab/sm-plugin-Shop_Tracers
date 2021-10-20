@@ -1,16 +1,17 @@
 "Tracers"
 {
-	"name"			"Tracers"	// Название категории в меню
-    "description"	""    				// Описание категории в меню
-	"hide_opposite_team"	"0"			// Скрывать ли лучи для противников (0 - Нет, 1 - Да)
+	"name"					"Tracers"						// Category name in the menu
+    "description"			""    							// Category description in the menu
+	"hide_opposite_team"	"0"								// Whether to hide tracers for opponents (0 - No, 1 - Yes)
+	"material"				"materials/sprites/laser.vmt" 	// Material used for tracers
 
-	"white"	// Идентефикатор в бд
+	"white"	// Identifier in the database
 	{
-		"name" "White"		// Название пункта в меню
-		"color" "255 255 255 255"	// Цвет дыма
-		"price" "10000"			// Цена покупки цвета
-		"sellprice" "4500"		// Цена продажи цвета
-		"duration" "0"		// Длительность цвета в секундах
+		"name" "White"				// Name of menu item
+		"color" "255 255 255 255"	// Colour of tracer
+		"price" "10000"				// Buying price of colour
+		"sellprice" "4500"			// Selling price of colour
+		"duration" "0"				// Colour duration in seconds
 	}
 	"red"
 	{

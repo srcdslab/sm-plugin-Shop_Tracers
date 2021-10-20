@@ -16,7 +16,7 @@ bool g_bEnabled[MAXPLAYERS+1],
 	 
 float g_fAmplitude[MAXPLAYERS+1];
 
-int g_iSprite[MAXPLAYERS+1],
+int g_iSprite,
 	g_iColor[MAXPLAYERS+1][4];
 
 public Plugin myinfo =
@@ -30,7 +30,7 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-	HookEvent("bullet_impact", BulletImpact);	
+	HookEvent("bullet_impact", BulletImpact, EventHookMode_Post);	
 	if (Shop_IsStarted()) Shop_Started();
 	
 	g_hCookie = RegClientCookie("sm_shop_tracers_v2", "1 - enabled, 0 - disabled", CookieAccess_Private);
@@ -62,8 +62,8 @@ public void OnMapStart()
 		SetFailState("Couldn't parse file %s", buffer);
 	Kv.Rewind();
 
-	// Kv.GetString("material", buffer, sizeof(buffer), "materials/sprites/laser.vmt");
-	// g_iSprite = PrecacheModel(buffer);
+	Kv.GetString("material", buffer, sizeof(buffer), "materials/sprites/laser.vmt");
+	g_iSprite = PrecacheModel(buffer);
 }
 
 public void Shop_Started()
@@ -96,9 +96,9 @@ public void Shop_Started()
 			}
 		} while (Kv.GotoNextKey());
 	}
-	
+
 	Kv.Rewind();
-	
+
 	Shop_AddToFunctionsMenu(FuncToggleVisibilityDisplay, FuncToggleVisibility);
 }
 
@@ -145,7 +145,6 @@ void SetCookieBool(int iClient, Handle hCookie, bool bValue)
 	else {
 		SetClientCookie(iClient, hCookie, "0");
 	}
-	
 }
 
 public ShopAction OnTracersUsed(int iClient, CategoryId category_id, const char[] category, ItemId item_id, const char[] item, bool isOn, bool elapsed)
@@ -156,16 +155,13 @@ public ShopAction OnTracersUsed(int iClient, CategoryId category_id, const char[
 		return Shop_UseOff;
 	}
 
-	Kv.Rewind();	
+	Kv.Rewind();
 	if(Kv.JumpToKey(item))
 	{
 		g_bEnabled[iClient] = true;
 		Kv.GetColor("color", g_iColor[iClient][0], g_iColor[iClient][1], g_iColor[iClient][2], g_iColor[iClient][3]);
 		
-		char buffer[PLATFORM_MAX_PATH];
-		Kv.GetString("material", buffer, sizeof(buffer), "materials/sprites/laser.vmt");
 		g_fAmplitude[iClient] = Kv.GetFloat("amplitude", 0.0);
-		g_iSprite[iClient] = PrecacheModel(buffer);
 		return Shop_UseOn;
 	}
 	Kv.Rewind();
@@ -181,7 +177,7 @@ public void BulletImpact(Event event, char[] name, bool dontBroadcast)
 
 	float bulletOrigin[3], newBulletOrigin[3],bulletDestination[3];
 	int[] clients = new int [MaxClients];
-	int i, totalClients;
+
 	GetClientEyePosition(iClient, bulletOrigin);
 
 	bulletDestination[0] = event.GetFloat("x");
@@ -194,31 +190,21 @@ public void BulletImpact(Event event, char[] name, bool dontBroadcast)
 	newBulletOrigin[1] = bulletOrigin[1] + ((bulletDestination[1] - bulletOrigin[1]) * percentage) - 0.08;
 	newBulletOrigin[2] = bulletOrigin[2] + ((bulletDestination[2] - bulletOrigin[2]) * percentage);
 
-	TE_SetupBeamPoints(newBulletOrigin, bulletDestination, g_iSprite[iClient], 0, 0, 0, 0.2, 2.0, 2.0, 1, g_fAmplitude[iClient], g_iColor[iClient], 0);
+	TE_SetupBeamPoints(newBulletOrigin, bulletDestination, g_iSprite, 0, 0, 0, 0.2, 2.0, 2.0, 1, g_fAmplitude[iClient], g_iColor[iClient], 0);
 
-	i = 1;
-	totalClients = 0;
-	
-	if(g_bHide) 
+	int totalClients = 0;
+
+	int iTeam = GetClientTeam(iClient);
+	for(int i = 1; i <= MaxClients; i++)
 	{
-		int iTeam;
-		iTeam = GetClientTeam(iClient);
-		while(i <= MaxClients)
-		{ 
-			if(IsClientInGame(i) && !IsFakeClient(i) && GetClientTeam(i) == iTeam && g_bShouldSee[i])
-			{
-				clients[totalClients++] = i;
-			}
-			++i;
-		}
-	}
-	else while(i <= MaxClients)
-	{ 
-		if(IsClientInGame(i) && !IsFakeClient(i) && g_bShouldSee[i])
+		if (g_bHide && IsClientInGame(i) && !IsFakeClient(i) && GetClientTeam(i) == iTeam && g_bShouldSee[i])
 		{
 			clients[totalClients++] = i;
 		}
-		++i;
+		else if (!g_bHide && IsClientInGame(i) && !IsFakeClient(i) && g_bShouldSee[i])
+		{
+			clients[totalClients++] = i;
+		}
 	}
 
 	TE_Send(clients, totalClients);
