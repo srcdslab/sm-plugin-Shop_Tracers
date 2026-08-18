@@ -8,7 +8,7 @@ This repository contains a SourceMod plugin called "Shop_Tracers" that provides 
 ### Language and Platform
 - **Language**: SourcePawn (SourceMod scripting language)
 - **Platform**: SourceMod 1.11+ for Source engine games
-- **Build System**: SourceKnight (version 0.2)
+- **Build System**: Native GitHub Actions (spcomp via rumblefrog/setup-sp, SourceMod 1.12.x)
 - **CI/CD**: GitHub Actions with automated building and releases
 
 ### Dependencies
@@ -20,9 +20,9 @@ The plugin depends on these SourceMod extensions and includes:
 - `clientprefs` - Client preference storage
 
 ### Build Configuration
-- **Build file**: `sourceknight.yaml` defines project structure and dependencies
+- **Build file**: `.github/workflows/ci.yml` defines the build steps and dependencies
 - **Output**: Compiled `.smx` files in `/addons/sourcemod/plugins`
-- **Dependencies**: Auto-downloaded during build process
+- **Dependencies**: Cloned from their GitHub repos during the CI job
 - **CI**: Automated builds on push/PR, releases on tags and main branch
 
 ## Code Organization
@@ -116,9 +116,9 @@ void SetCookieBool(int iClient, Handle hCookie, bool bValue);
 ## Development Workflow
 
 ### Local Development
-1. **Setup**: Clone repository and ensure SourceKnight is available
-2. **Dependencies**: Run `sourceknight build` to download dependencies
-3. **Compilation**: SourceKnight compiles `.sp` files to `.smx` plugins
+1. **Setup**: Clone repository and install the SourcePawn compiler (`spcomp`) matching SourceMod 1.12.x
+2. **Dependencies**: Clone `sm-plugin-MultiColors` and `sm-plugin-Shop-Core` and copy their `scripting/include` files into `addons/sourcemod/scripting/include`
+3. **Compilation**: Run `spcomp -i include -o ../plugins/Shop_Tracers.smx Shop_Tracers.sp` from `addons/sourcemod/scripting`
 4. **Testing**: Deploy to development server for testing
 
 ### Configuration Changes
@@ -142,9 +142,8 @@ void SetCookieBool(int iClient, Handle hCookie, bool bValue);
 
 ### Build Validation
 ```bash
-# CI automatically builds on push/PR
-# Local build testing:
-sourceknight build
+# CI automatically builds on push/PR via .github/workflows/ci.yml
+# Local build testing: run spcomp as described above
 
 # Check for compilation warnings or errors
 # Validate plugin loads without errors in SourceMod
@@ -159,8 +158,8 @@ sourceknight build
 ## Troubleshooting Common Issues
 
 ### Build Issues
-- **Dependency errors**: Ensure SourceKnight can download dependencies from GitHub
-- **Include path issues**: Verify include files are properly extracted to scripting/include
+- **Dependency errors**: Ensure the CI job can clone `sm-plugin-MultiColors` and `sm-plugin-Shop-Core` from GitHub
+- **Include path issues**: Verify include files are properly copied to scripting/include
 - **Version conflicts**: Check SourceMod version compatibility
 
 ### Runtime Issues
@@ -198,7 +197,7 @@ sourceknight build
 
 ### For Code Changes
 - `addons/sourcemod/scripting/Shop_Tracers.sp` - Main plugin logic
-- `sourceknight.yaml` - Build configuration and dependencies
+- `.github/workflows/ci.yml` - Build configuration and dependencies
 
 ### For Configuration Changes  
 - `addons/sourcemod/configs/shop/tracers.txt` - Tracer colors, prices, and settings
