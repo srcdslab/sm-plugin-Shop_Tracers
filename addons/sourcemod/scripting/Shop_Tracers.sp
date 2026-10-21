@@ -8,7 +8,7 @@
 
 KeyValues Kv;
 
-Handle g_hCookie;
+Cookie g_hCookie;
 
 bool g_bEnabled[MAXPLAYERS+1],
 	 g_bShouldSee[MAXPLAYERS+1],
@@ -24,7 +24,7 @@ public Plugin myinfo =
 	name = "[Shop] Color Tracers",
 	author = "FrozDark & R1KO",
 	description = "Grant players to buy colored tracers",
-	version = "2.0.4",
+	version = "2.0.5",
 	url  = "www.hlmod.ru"
 };
 
@@ -33,7 +33,7 @@ public void OnPluginStart()
 	HookEvent("bullet_impact", BulletImpact, EventHookMode_Post);	
 	if (Shop_IsStarted()) Shop_Started();
 	
-	g_hCookie = RegClientCookie("sm_shop_tracers_v2", "1 - enabled, 0 - disabled", CookieAccess_Private);
+	g_hCookie = new Cookie("sm_shop_tracers_v2", "1 - enabled, 0 - disabled", CookieAccess_Private);
 	
 	for ( int i = 1; i <= MaxClients; ++i ) {
 		if ( IsClientInGame(i) ) {
@@ -49,12 +49,12 @@ public void OnPluginEnd()
 
 public void OnMapStart() 
 {
-	if (Kv != INVALID_HANDLE) 
-		CloseHandle(Kv);
+	if (Kv != null) 
+		delete Kv;
 
 	char buffer[PLATFORM_MAX_PATH];
 
-	Kv = CreateKeyValues("Tracers");
+	Kv = new KeyValues("Tracers");
 
 	Shop_GetCfgFile(buffer, sizeof(buffer), "tracers.txt");
 
@@ -124,10 +124,10 @@ public void OnClientCookiesCached(int client)
 	g_bShouldSee[client] = GetCookieBool(client, g_hCookie);
 }
 
-bool GetCookieBool(int iClient, Handle hCookie)
+bool GetCookieBool(int iClient, Cookie hCookie)
 {
 	char sBuffer[4];
-	GetClientCookie(iClient, hCookie, sBuffer, 4);
+	hCookie.Get(iClient, sBuffer, 4);
 	return (StringToInt(sBuffer) == 0 && sBuffer[0] != 0)?false:true;
 }
 
@@ -137,13 +137,13 @@ public void OnClientDisconnect(int client)
 	g_bShouldSee[client] = true;
 }
 
-void SetCookieBool(int iClient, Handle hCookie, bool bValue)
+void SetCookieBool(int iClient, Cookie hCookie, bool bValue)
 {
 	if ( bValue ) {
-		SetClientCookie(iClient, hCookie, "1");
+		hCookie.Set(iClient, "1");
 	}
 	else {
-		SetClientCookie(iClient, hCookie, "0");
+		hCookie.Set(iClient, "0");
 	}
 }
 
