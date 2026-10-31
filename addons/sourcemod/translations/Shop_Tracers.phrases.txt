@@ -1,0 +1,43 @@
+"Phrases"
+{
+	"Tracers Visibility Visible"
+	{
+		"en"		"Tracers: Visible"
+		"fr"		"Tracers : visibles"
+		"ru"		"Трассеры: видимы"
+		"es"		"Trazadoras: visibles"
+		"de"		"Tracer: sichtbar"
+		"pt"		"Traçantes: visíveis"
+		"chi"		"弹道：可见"
+	}
+	"Tracers Visibility Hidden"
+	{
+		"en"		"Tracers: Hidden"
+		"fr"		"Tracers : cachés"
+		"ru"		"Трассеры: скрыты"
+		"es"		"Trazadoras: ocultas"
+		"de"		"Tracer: versteckt"
+		"pt"		"Traçantes: ocultos"
+		"chi"		"弹道：隐藏"
+	}
+	"Tracers Now Visible"
+	{
+		"en"		"Shop tracers are {blue}visible{default}."
+		"fr"		"Les tracers du shop sont {blue}visibles{default}."
+		"ru"		"Трассеры из магазина {blue}видимы{default}."
+		"es"		"Las trazadoras de la tienda están {blue}visibles{default}."
+		"de"		"Shop-Tracer sind {blue}sichtbar{default}."
+		"pt"		"Os traçantes da loja estão {blue}visíveis{default}."
+		"chi"		"商店弹道已设为{blue}可见{default}。"
+	}
+	"Tracers Now Hidden"
+	{
+		"en"		"Shop tracers are {red}hidden{default}."
+		"fr"		"Les tracers du shop sont {red}cachés{default}."
+		"ru"		"Трассеры из магазина {red}скрыты{default}."
+		"es"		"Las trazadoras de la tienda están {red}ocultas{default}."
+		"de"		"Shop-Tracer sind {red}versteckt{default}."
+		"pt"		"Os traçantes da loja estão {red}ocultos{default}."
+		"chi"		"商店弹道已设为{red}隐藏{default}。"
+	}
+}

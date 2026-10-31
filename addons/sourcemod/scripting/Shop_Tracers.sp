@@ -24,12 +24,14 @@ public Plugin myinfo =
 	name = "[Shop] Color Tracers",
 	author = "FrozDark & R1KO",
 	description = "Grant players to buy colored tracers",
-	version = "2.0.5",
+	version = "2.0.6",
 	url  = "www.hlmod.ru"
 };
 
 public void OnPluginStart()
 {
+	LoadTranslations("Shop_Tracers.phrases");
+
 	HookEvent("bullet_impact", BulletImpact, EventHookMode_Post);	
 	if (Shop_IsStarted()) Shop_Started();
 	
@@ -104,13 +106,13 @@ public void Shop_Started()
 
 public void FuncToggleVisibilityDisplay(int client, char[] buffer, int maxlength)
 {
-	Format(buffer, maxlength, "Tracers: %s", g_bShouldSee[client] ? "Visible" : "Hidden");
+	Format(buffer, maxlength, "%T", g_bShouldSee[client] ? "Tracers Visibility Visible" : "Tracers Visibility Hidden", client);
 }
 
 public bool FuncToggleVisibility(int client)
 {
 	g_bShouldSee[client] = !g_bShouldSee[client];
-	CPrintToChat(client, "{green}[Shop] {default}Shop tracers is %s{default}.", g_bShouldSee[client] ? "{blue}visible":"{red}hidden");
+	CPrintToChat(client, "{green}[Shop] {default}%t", g_bShouldSee[client] ? "Tracers Now Visible" : "Tracers Now Hidden");
 	return false;
 }
 
