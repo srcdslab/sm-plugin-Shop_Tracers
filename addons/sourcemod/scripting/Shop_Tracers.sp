@@ -24,7 +24,7 @@ public Plugin myinfo =
 	name = "[Shop] Color Tracers",
 	author = "FrozDark & R1KO",
 	description = "Grant players to buy colored tracers",
-	version = "2.0.7",
+	version = "2.0.8",
 	url  = "www.hlmod.ru"
 };
 
