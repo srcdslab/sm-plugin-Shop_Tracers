@@ -9,6 +9,12 @@
 		"de"		"Tracer: sichtbar"
 		"pt"		"Traçantes: visíveis"
 		"chi"		"弹道：可见"
+		"pl"		"Smugi: widoczne"
+		"tr"		"İzler: görünür"
+		"it"		"Traccianti: visibili"
+		"ua"		"Трасери: видимі"
+		"zho"		"彈道軌跡：可見"
+		"cze"		"Stopovky: viditelné"
 	}
 	"Tracers Visibility Hidden"
 	{
@@ -19,6 +25,12 @@
 		"de"		"Tracer: versteckt"
 		"pt"		"Traçantes: ocultos"
 		"chi"		"弹道：隐藏"
+		"pl"		"Smugi: ukryte"
+		"tr"		"İzler: gizli"
+		"it"		"Traccianti: nascosti"
+		"ua"		"Трасери: приховані"
+		"zho"		"彈道軌跡：隱藏"
+		"cze"		"Stopovky: skryté"
 	}
 	"Tracers Now Visible"
 	{
@@ -29,6 +41,12 @@
 		"de"		"Shop-Tracer sind {blue}sichtbar{default}."
 		"pt"		"Os traçantes da loja estão {blue}visíveis{default}."
 		"chi"		"商店弹道已设为{blue}可见{default}。"
+		"pl"		"Smugi pocisków ze sklepu są {blue}widoczne{default}."
+		"tr"		"Mağaza mermi izleri {blue}görünür{default}."
+		"it"		"I traccianti dello shop sono {blue}visibili{default}."
+		"ua"		"Трасери з магазину {blue}видимі{default}."
+		"zho"		"商店彈道軌跡已{blue}顯示{default}。"
+		"cze"		"Stopovky ze shopu jsou {blue}viditelné{default}."
 	}
 	"Tracers Now Hidden"
 	{
@@ -39,5 +57,11 @@
 		"de"		"Shop-Tracer sind {red}versteckt{default}."
 		"pt"		"Os traçantes da loja estão {red}ocultos{default}."
 		"chi"		"商店弹道已设为{red}隐藏{default}。"
+		"pl"		"Smugi pocisków ze sklepu są {red}ukryte{default}."
+		"tr"		"Mağaza mermi izleri {red}gizli{default}."
+		"it"		"I traccianti dello shop sono {red}nascosti{default}."
+		"ua"		"Трасери з магазину {red}приховані{default}."
+		"zho"		"商店彈道軌跡已{red}隱藏{default}。"
+		"cze"		"Stopovky ze shopu jsou {red}skryté{default}."
 	}
 }
